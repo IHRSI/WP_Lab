@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Formatter</title>
+    <link rel="stylesheet" href="{% static 'a1/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Formatter</h1>
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-section">
+                <label>Name:</label>
+                <input type="text" name="name" value="{{ name }}" placeholder="Enter your name">
+                
+                <label>Message:</label>
+                <input type="text" name="message" value="{{ message }}" placeholder="Enter your message">
+            </div>
+            
+            <div class="form-section">
+                <label>Text Color:</label>
+                <input type="color" name="color" value="{{ color }}">
+            </div>
+            
+            <div class="form-section">
+                <label>Text Style:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="bold" {% if bold %}checked{% endif %}> Bold</label>
+                    <label><input type="checkbox" name="italic" {% if italic %}checked{% endif %}> Italic</label>
+                    <label><input type="checkbox" name="underline" {% if underline %}checked{% endif %}> Underline</label>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" name="action" value="display">Display</button>
+                <button type="submit" name="action" value="clear">Clear</button>
+                <a href="javascript:history.back()" class="btn-exit">Exit</a>
+            </div>
+        </form>
+        
+        {% if display_text %}
+        <div class="label-box">
+            <div class="display-label" style="color: {{ color }}; {% if bold %}font-weight: bold;{% endif %} {% if italic %}font-style: italic;{% endif %} {% if underline %}text-decoration: underline;{% endif %}">
+                {{ display_text }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

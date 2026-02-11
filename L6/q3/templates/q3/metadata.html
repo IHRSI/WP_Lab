@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metadata</title>
+    <link rel="stylesheet" href="{% static 'q3/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn-home">← Home</a>
+        
+        <h1>Book Metadata</h1>
+        
+        <div class="info-box">
+            <table>
+                <tr>
+                    <td><strong>ISBN:</strong></td>
+                    <td>{{ metadata.isbn }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Pages:</strong></td>
+                    <td>{{ metadata.pages }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Edition:</strong></td>
+                    <td>{{ metadata.edition }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Language:</strong></td>
+                    <td>{{ metadata.language }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Published:</strong></td>
+                    <td>{{ metadata.published }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

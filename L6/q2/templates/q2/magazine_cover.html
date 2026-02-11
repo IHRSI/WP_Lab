@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Magazine Cover Generator</title>
+    <link rel="stylesheet" href="{% static 'q2/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Magazine Cover Generator</h2>
+        
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label>Magazine Title/Text:</label>
+                    <textarea name="text" placeholder="Enter your magazine title or text">{{ text }}</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Background Color:</label>
+                    <input type="color" name="bg_color" value="{{ bg_color }}">
+                </div>
+                
+                <div class="form-group">
+                    <label>Font Size:</label>
+                    <input type="range" name="font_size" min="20" max="120" value="{{ font_size }}">
+                    <span id="size-display">{{ font_size }}px</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Font Color:</label>
+                    <input type="color" name="font_color" value="{{ font_color }}">
+                </div>
+                
+                <div class="form-group">
+                    <label>Font Family:</label>
+                    <select name="font_family">
+                        <option value="Arial" {% if font_family == 'Arial' %}selected{% endif %}>Arial</option>
+                        <option value="Georgia" {% if font_family == 'Georgia' %}selected{% endif %}>Georgia</option>
+                        <option value="Times New Roman" {% if font_family == 'Times New Roman' %}selected{% endif %}>Times New Roman</option>
+                        <option value="Courier New" {% if font_family == 'Courier New' %}selected{% endif %}>Courier New</option>
+                        <option value="Verdana" {% if font_family == 'Verdana' %}selected{% endif %}>Verdana</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Background Pattern:</label>
+                    <select name="pattern">
+                        <option value="solid" {% if pattern == 'solid' %}selected{% endif %}>Solid Color</option>
+                        <option value="dots" {% if pattern == 'dots' %}selected{% endif %}>Dots</option>
+                        <option value="stripes" {% if pattern == 'stripes' %}selected{% endif %}>Stripes</option>
+                    </select>
+                </div>
+                
+                <button type="submit">Generate Cover</button>
+            </form>
+        </div>
+        
+        <div class="cover-container pattern-{{ pattern }}" style="background-color: {{ bg_color }};">
+            <div class="cover-text" style="font-size: {{ font_size }}px; color: {{ font_color }}; font-family: {{ font_family }};">
+                {{ text|linebreaks }}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const fontSizeInput = document.querySelector('input[name="font_size"]');
+        const sizeDisplay = document.getElementById('size-display');
+        fontSizeInput.addEventListener('input', function() {
+            sizeDisplay.textContent = this.value + 'px';
+        });
+    </script>
+</body>
+</html>

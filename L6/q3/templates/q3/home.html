@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ book.title }} - Book Information</title>
+    <link rel="stylesheet" href="{% static 'q3/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        
+        <div class="book-cover">
+            <div class="cover-image">
+                <p>{{ book.class }}</p>
+                <h2>{{ book.title }}</h2>
+                <p>{{ book.author }}</p>
+            </div>
+        </div>
+        
+        <p class="description">{{ book.description }}</p>
+        
+        <div class="links">
+            <a href="{% url 'metadata' %}" class="btn">Metadata</a>
+            <a href="{% url 'reviews' %}" class="btn">Reviews</a>
+            <a href="{% url 'publisher_info' %}" class="btn">Publisher Info</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Publisher Info</title>
+    <link rel="stylesheet" href="{% static 'q3/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn-home">← Home</a>
+        
+        <h1>Publisher Information</h1>
+        
+        <div class="info-box">
+            <h2>{{ publisher.name }}</h2>
+            <p><strong>Address:</strong> {{ publisher.address }}</p>
+            <p><strong>Email:</strong> {{ publisher.contact }}</p>
+            <p><strong>Website:</strong> {{ publisher.website }}</p>
+            <p><strong>Description:</strong> {{ publisher.description }}</p>
+        </div>
+    </div>
+</body>
+</html>

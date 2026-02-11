@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reviews</title>
+    <link rel="stylesheet" href="{% static 'q3/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn-home">← Home</a>
+        
+        <h1>Reviews</h1>
+        
+        <div class="reviews-list">
+            {% for review in reviews %}
+            <div class="review-box">
+                <p><strong>{{ review.author }}</strong> - Rating: {{ review.rating }}/5</p>
+                <p>{{ review.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
