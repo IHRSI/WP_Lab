@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selected Items</title>
+    <style>
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 2px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Selected Items</h2>
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <th>Price (Rs.)</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'a1_index' %}">Go Back</a>
+</body>
+</html>

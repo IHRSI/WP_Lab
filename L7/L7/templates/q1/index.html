@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Manufacturer</title>
+    <style>
+        form { margin: 20px; }
+        .form-control { padding: 8px; margin: 5px 0; }
+        button { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <h2>Select Car Manufacturer</h2>
+    <form method="POST" action="{% url 'q1_result' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
