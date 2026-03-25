@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q1 - Website Directory</title>
+</head>
+<body>
+    <h1>Q1: Website Directory</h1>
+
+    <h2>Add Category</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ category_form.as_p }}
+        <button type="submit" name="add_category">Save Category</button>
+    </form>
+
+    <h2>Add Page</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ page_form.as_p }}
+        <button type="submit" name="add_page">Save Page</button>
+    </form>
+
+    <h2>Categories and Pages</h2>
+    {% for category in categories %}
+        <h3>{{ category.name }} (Visits: {{ category.visits }}, Likes: {{ category.likes }})</h3>
+        <ul>
+            {% for page in category.pages.all %}
+                <li>
+                    {{ page.title }} - <a href="{{ page.url }}">{{ page.url }}</a> (Views: {{ page.views }})
+                </li>
+            {% empty %}
+                <li>No pages in this category.</li>
+            {% endfor %}
+        </ul>
+    {% empty %}
+        <p>No categories added yet.</p>
+    {% endfor %}
+</body>
+</html>

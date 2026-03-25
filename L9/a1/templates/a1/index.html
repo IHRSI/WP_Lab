@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A1 - Institutes</title>
+</head>
+<body>
+    <h1>A1: Institutes</h1>
+
+    <label for="institute_list">Institute Names</label><br>
+    <select id="institute_list" size="8">
+        {% for institute in institutes %}
+            <option>{{ institute.name }}</option>
+        {% empty %}
+            <option>No institutes found.</option>
+        {% endfor %}
+    </select>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q2 - WORKS and LIVES</title>
+</head>
+<body>
+    <h1>Q2: WORKS and LIVES</h1>
+
+    <h2>Insert into LIVES</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ lives_form.as_p }}
+        <button type="submit" name="add_lives">Insert</button>
+    </form>
+
+    <h2>Insert into WORKS</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ works_form.as_p }}
+        <button type="submit" name="add_work">Insert</button>
+    </form>
+
+    <h2>Find Employees by Company</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ search_form.as_p }}
+        <button type="submit" name="search_company">Search</button>
+    </form>
+
+    {% if results is not None %}
+        <h3>Results</h3>
+        <ul>
+            {% for row in results %}
+                <li>{{ row.person_name }} - {{ row.city|default:"City not found" }}</li>
+            {% empty %}
+                <li>No records found for this company.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
