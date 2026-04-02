@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q2 - Add Product</title>
+</head>
+<body>
+    <h1>Add Product</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <p><a href="/q2/">Go to Product List</a></p>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q2 - Product List</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <p><a href="/q2/add/">Add Product</a></p>
+    <ul>
+        {% for product in products %}
+            <li>{{ product.title }} - {{ product.price }} - {{ product.description }}</li>
+        {% empty %}
+            <li>No products.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

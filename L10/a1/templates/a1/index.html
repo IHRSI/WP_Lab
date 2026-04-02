@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A1 - Students</title>
+</head>
+<body>
+    <h1>Student Entry</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Student</button>
+    </form>
+
+    <h2>All Students</h2>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.student_id }} - {{ student.student_name }} - {{ student.course_name }} - {{ student.date_of_birth }}</li>
+        {% empty %}
+            <li>No students.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

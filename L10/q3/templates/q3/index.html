@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Q3 - Human</title>
+</head>
+<body>
+    <h1>Human Details</h1>
+
+    <form method="get">
+        <label for="human">First Name:</label>
+        <select name="human" id="human" onchange="this.form.submit()">
+            <option value="">Select</option>
+            {% for human in humans %}
+                <option value="{{ human.id }}" {% if selected_human and human.id == selected_human.id %}selected{% endif %}>
+                    {{ human.first_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if selected_human %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="human" value="{{ selected_human.id }}">
+            <p>
+                <label>First Name:</label>
+                <input type="text" name="first_name" value="{{ selected_human.first_name }}">
+            </p>
+            <p>
+                <label>Last Name:</label>
+                <input type="text" name="last_name" value="{{ selected_human.last_name }}">
+            </p>
+            <p>
+                <label>Phone:</label>
+                <input type="text" name="phone" value="{{ selected_human.phone }}">
+            </p>
+            <p>
+                <label>Address:</label>
+                <input type="text" name="address" value="{{ selected_human.address }}">
+            </p>
+            <p>
+                <label>City:</label>
+                <input type="text" name="city" value="{{ selected_human.city }}">
+            </p>
+            <button type="submit" name="action" value="update">Update</button>
+            <button type="submit" name="action" value="delete">Delete</button>
+        </form>
+    {% endif %}
+</body>
+</html>
